@@ -1,0 +1,8 @@
+Flask==1.1.2
+pylint
+pytest
+requests
+datetime
+google-cloud-language
+gunicorn
+pylint_runner
