@@ -1,8 +1,8 @@
 Flask==1.1.2
-pylint
-pytest
-requests
-datetime
-google-cloud-language
-gunicorn
-pylint_runner
+pylint==2.6.0
+pytest==6.1.2
+requests==2.25.0
+datetime==4.3
+google-cloud-language==2.0.0
+google-cloud-secret-manager==0.1.0
+gunicorn==19.9.0
