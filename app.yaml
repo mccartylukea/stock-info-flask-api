@@ -1,1 +1,4 @@
 runtime: python37
+env_variables:
+  PROJECT_ID: "stock-info-flask-api"
+  PROJ_NUMBER: "95867730684"
