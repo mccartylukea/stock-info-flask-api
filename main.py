@@ -1,11 +1,20 @@
+import os
 from flask import Flask, jsonify
 from datetime import datetime, timezone
 from errors import NoReturnPayload
 from get_stock_info import get_metadata, get_stock_price
 from get_twitter_data import get_average_sentiment
 from google.cloud import language_v1
+from google.cloud import secretmanager
 
 app = Flask(__name__)
+
+PROJECT_ID = os.environ.get("PROJECT_ID")
+
+secrets = secretmanager.SecretManagerServiceClient()
+ALPHAVANTAGE_API_KEY = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/alphavantage_api_key/versions/1").payload.data.decode("utf-8")
+TWITTER_BEARER_TOKEN = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/twitter_bearer_token/versions/1").payload.data.decode("utf-8")
+GOOGLE_API_KEY = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/google_api_key/versions/1").payload.data.decode("utf-8")
 
 @app.errorhandler(NoReturnPayload)
 def handle_exception(error):
